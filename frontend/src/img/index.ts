@@ -1,0 +1,1 @@
+export { default as sampleCourseCard } from './sampleCourse.svg';
