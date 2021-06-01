@@ -1,11 +1,28 @@
+import { NavDisplay } from '../../types'
+import { useHistory, Link } from 'react-router-dom';
 
 import './Nav.css'
 
-const Nav = () => {
+type NavProps = {
+  navDisplay: NavDisplay;
+}
+
+const Nav = ({ navDisplay }: NavProps) => {
+  const history = useHistory();
+
   return (
     <nav>
-      <h1>AnyStudy</h1>
-      <button value="Sign In" className="signInButton">Sign In</button>
+      <Link to="/"><h1>AnyStudy</h1></Link>
+      <div className="navDetails">
+        {navDisplay === NavDisplay.SIGN_IN &&
+          <button 
+            value="Sign In" 
+            className="signInButton"
+            onClick={() => history.push('/signin')}>
+              Sign In
+            </button>
+        }
+      </div>
     </nav>
   );
 }

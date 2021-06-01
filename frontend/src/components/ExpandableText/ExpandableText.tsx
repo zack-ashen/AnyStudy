@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 
-import './TextBlurb.css'
+import './ExpandableText.css'
 
-type ExpandableText = {
+type ExpandableTextProps = {
   text: string;
   cutoff: number; // character cuttoff
+  style:React.CSSProperties;
 }
 
 enum Expandable {
@@ -13,7 +14,7 @@ enum Expandable {
   NotExpandable, // text doesn't need to be expanded
 }
 
-const ExpandableText = ({ text, cutoff }: ExpandableText) => {
+const ExpandableText = ({ text, cutoff, style }: ExpandableTextProps) => {
   const [displayText, setDisplayText] = useState<string>(text);
   const [expand, setExpand] = useState<Expandable>(Expandable.NotExpanded);
 
@@ -38,11 +39,21 @@ const ExpandableText = ({ text, cutoff }: ExpandableText) => {
 
   switch (expand) {
     case Expandable.Expanded:
-      return <p>{displayText}<span onClick={() => setExpand(Expandable.NotExpanded)}>Show Less</span></p>
+      return (
+        <p style={style}>
+          {displayText}  
+          <span className="expandLink" onClick={() => setExpand(Expandable.NotExpanded)}>Show Less</span>
+        </p>
+      )
     case Expandable.NotExpanded:
-      return <p>{displayText}<span onClick={() => setExpand(Expandable.Expanded)}>Show More</span></p>
+      return (
+        <p style={style}>
+          {displayText}
+          <span className="expandLink" onClick={() => setExpand(Expandable.Expanded)}>Show More</span>
+        </p>
+      )
     case Expandable.NotExpandable:
-      return <p>{displayText}</p>
+      return <p style={style}>{displayText}</p>
   } 
 }
 

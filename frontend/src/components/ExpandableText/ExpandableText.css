@@ -1,0 +1,9 @@
+.expandLink {
+  color: #2939B4;
+  margin-left: 0.5rem;
+}
+
+.expandLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

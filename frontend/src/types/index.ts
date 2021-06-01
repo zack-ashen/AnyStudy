@@ -10,6 +10,13 @@ export enum GradYear {
   SENIOR = 'Senior'
 }
 
+export enum NavDisplay {
+  SIGN_IN,
+  NOTHING,
+  DEFAULT,
+  PICK_CLASSES
+}
+
 export type Course = {
   id: number;
   description: string;

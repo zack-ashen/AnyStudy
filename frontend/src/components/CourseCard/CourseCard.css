@@ -14,10 +14,6 @@
   font-weight: 300;
 }
 
-.courseDescription {
-  margin: 0 0 0.5rem 0;
-}
-
 .tagContainer {
   display: inline-flex;
   align-items: center;

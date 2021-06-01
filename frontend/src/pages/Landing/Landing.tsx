@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import Nav from '../../components/Nav/Nav';
 import CourseCard from '../../components/CourseCard/CourseCard'
-
 import jsonToCourse from '../../util';
-import { Course } from '../../types';
+import { Course, NavDisplay } from '../../types';
+import { useHistory } from 'react-router-dom';
 
 import './Landing.css'
 
 const Landing = () => {
+  const history = useHistory();
   const [sampleCourse, setSampleCourse] = useState<Course>();
 
   useEffect(() => {
@@ -18,13 +19,18 @@ const Landing = () => {
 
   return (
     <div className="Landing">
-      <Nav />
+      <Nav navDisplay={NavDisplay.SIGN_IN}/>
       <h1 className="tagline">A better way to choose courses.</h1>
       
       {sampleCourse && 
         <CourseCard course={sampleCourse} />
       }
-      <button value="Get Started" className="getStartedButton">Get Started</button>
+      <button 
+        value="Get Started" 
+        className="getStartedButton" 
+        onClick={() => history.push('/signup')}>
+          Get Started
+        </button>
     </div>
   );
 }

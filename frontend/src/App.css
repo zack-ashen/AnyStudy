@@ -23,3 +23,26 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: inherit;
+}
+
+/* visited link */
+a:visited {
+  color: inherit;
+}
+
+/* mouse over link */
+a:hover {
+  color: inherit;
+}
+
+/* selected link */
+a:active {
+  color: inherit;
+}
