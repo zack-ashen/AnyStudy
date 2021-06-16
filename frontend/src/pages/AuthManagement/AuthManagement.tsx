@@ -1,6 +1,7 @@
 import Nav from '../../components/Nav/Nav';
 import { NavDisplay } from '../../types';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import { useState } from 'react'
 
 type AuthManagementProps = {
   signIn: boolean;
@@ -8,6 +9,7 @@ type AuthManagementProps = {
 
 const AuthManagement = ({ signIn }: AuthManagementProps) => {
   const navDisplay = signIn ? NavDisplay.NOTHING : NavDisplay.SIGN_IN;
+  const [signedIn, setSignedIn] = useState<boolean>(false);
 
   const auth = (e: any) => {
 

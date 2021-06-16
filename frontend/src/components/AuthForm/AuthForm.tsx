@@ -1,6 +1,6 @@
 import { useState } from 'react';
-
 import './AuthForm.css';
+import googleLogo from './google_logo.svg';
 
 type AuthFormProps = {
   signIn: boolean;
@@ -50,7 +50,9 @@ const AuthForm = ({ signIn, auth }: AuthFormProps) => {
 
       <div className="divider" />
 
-      <button className="googleAuthButton">{formTitle} with Google</button>
+      <button className="googleAuthButton">
+        <img className="googleLogo" src={googleLogo} />{formTitle} with Google
+      </button>
     </form>
   )
 }

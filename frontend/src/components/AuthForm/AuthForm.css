@@ -66,4 +66,15 @@
   border-radius: 0.875rem;
   padding: 0.7rem 0;
   color: #0E1C5A;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
+
+.googleLogo {
+  width: 1.5rem;
+  height: auto;
+  margin-right: 1rem;
+}
+

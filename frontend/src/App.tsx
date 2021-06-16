@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import Landing from './pages/Landing/Landing';
 import AuthManagement from './pages/AuthManagement/AuthManagement';
 
@@ -12,6 +12,9 @@ function App() {
         <AuthManagement signIn={true} /> )}/>
         <Route exact path='/signup' render={(props) => (
         <AuthManagement signIn={false} /> )}/>
+      <Route path='*'>
+        <Redirect to="/" />
+      </Route>
     </Switch>
   );
 }
