@@ -1,4 +1,3 @@
-
 nav {
   margin: 2rem auto auto auto;
   display: flex;
@@ -7,17 +6,20 @@ nav {
   align-items: center;
 }
 
-.signInButton {
+.signInButton,
+.logoutButton {
   font-weight: 500;
-  color: #3D63E2;
-  border: solid 0.15rem #3D63E2;
+  color: #3d63e2;
+  border: solid 0.15rem #3d63e2;
   border-radius: 0.6rem;
   padding: 0.2rem 1.2rem 0.2rem 1.2rem;
   transition: all 0.3s;
 }
 
-.signInButton:hover {
-  background-color: #3D63E2;
+.signInButton:hover,
+.logoutButton:hover {
+  background-color: #3d63e2;
   color: white;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+
