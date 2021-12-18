@@ -1,0 +1,53 @@
+#toastContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Toast {
+  margin: 1rem 0 0 0;
+  background-color: #eb1e46;
+  border-radius: 0.6rem;
+  padding: 0.02rem 1.1rem 0.02rem 1.1rem;
+  color: white;
+  font-size: 0.9em;
+  border: solid 0.1rem #db153b;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.2s;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Toast:hover {
+  cursor: pointer;
+}
+
+.toastMessage {
+  padding-left: 0.8rem;
+  font-weight: 600;
+  font-size: 0.7em;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

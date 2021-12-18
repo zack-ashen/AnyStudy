@@ -1,0 +1,37 @@
+.FormRadio {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.formRadioSelected,
+.formRadioDeselected {
+  margin-bottom: 1.75rem;
+  width: 28rem;
+  padding: 0.33rem 0;
+  font-size: 1.25em;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  align-self: center;
+  outline: none;
+  border: 2px solid #395ef8;
+  transition: all 200ms ease-in-out;
+}
+
+.formRadioSelected:hover,
+.formRadioDeselected:hover {
+  cursor: pointer;
+}
+
+.formRadioSelected,
+.formRadioDeselected:hover {
+  background-color: #395ef8;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: 2px solid #2d52ce;
+}
+
+.formRadioDeselected {
+  background-color: white;
+  color: inherit;
+}

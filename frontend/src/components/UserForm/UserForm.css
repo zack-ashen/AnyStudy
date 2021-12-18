@@ -1,0 +1,80 @@
+.UserForm {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rem;
+}
+
+.UserMajorFormPage,
+.UserYearFormPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.userFormLabel {
+  font-size: 1.5em;
+}
+
+.userFormField {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 0.1rem solid #1b2e7e;
+  margin-top: 3rem;
+  outline: none;
+  font-size: 1.4em;
+  padding: 0.5rem 0 0.5rem 1rem;
+  width: 98%;
+  transition: border-color ease-in-out 150ms;
+  font-family: inherit;
+  color: inherit;
+}
+
+.userSelectField {
+  margin-top: 3rem;
+  font-size: 1.4em;
+}
+
+.majorField:focus {
+  border-color: #0036ff;
+}
+
+.directionalButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.nextButton {
+  background-color: #3d63e2;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: box-shadow 300ms;
+}
+
+.backButton {
+  background-color: white;
+  border: solid 2px #818dbf;
+  outline: none;
+  color: #818dbf;
+  transition: all 200ms ease-in-out;
+}
+
+.nextButton,
+.backButton {
+  padding: 0.02rem 3rem 0.02rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.8em;
+}
+
+.nextButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 6px;
+}
+
+.backButton:hover {
+  background-color: #818dbf;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 6px;
+}
