@@ -1,18 +1,18 @@
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext } from "react";
+import { User } from "../types";
 
-const AuthContext = createContext({});
+type AuthState = {
+  logout: () => void;
+  id: string;
+  user?: User;
+  refreshUser: () => void;
+};
 
-const AuthProvider = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+const AuthContext = createContext({
+  logout: () => { },
+  id: "",
+  user: {},
+  refreshUser: () => {},
+} as AuthState);
 
-  useEffect(() => {
-    setLoggedIn(true);
-  }, [])
-
-  const authContextValue={}
-  return <AuthContext.Provider value={authContextValue} />;
-}
-
-const useAuth = () => React.useContext(AuthContext)
-
-export { AuthProvider, useAuth }
+export default AuthContext;

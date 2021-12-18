@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react'
+
 import Nav from '../../components/Nav/Nav';
 import CourseCard from '../../components/CourseCard/CourseCard'
-import jsonToCourse from '../../util';
-import { Course, NavDisplay } from '../../types';
-import { useHistory } from 'react-router-dom';
+import { jsonToCourse } from '../../util/index';
+import { Course } from '../../types';
 
 import './Landing.css'
 
-const Landing = () => {
-  const history = useHistory();
-  const [sampleCourse, setSampleCourse] = useState<Course>();
+type LandingProps = {
+  loginButton: JSX.Element;
+  signUpButton: JSX.Element;
+}
 
+const Landing = ({ loginButton, signUpButton } : LandingProps) => {
+  const [sampleCourse, setSampleCourse] = useState<Course>();
+  
   useEffect(() => {
     fetch("/api/courses/random/")
       .then(res => res.json())
@@ -19,18 +23,12 @@ const Landing = () => {
 
   return (
     <div className="Landing">
-      <Nav navDisplay={NavDisplay.SIGN_IN}/>
+      <Nav authButton={loginButton}/>
       <h1 className="tagline">A better way to choose courses.</h1>
-      
       {sampleCourse && 
         <CourseCard course={sampleCourse} />
       }
-      <button 
-        value="Get Started" 
-        className="getStartedButton" 
-        onClick={() => history.push('/signup')}>
-          Get Started
-        </button>
+      {signUpButton}
     </div>
   );
 }
