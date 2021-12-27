@@ -39,6 +39,15 @@ def get_user(user_id: str):
     return jsonify(user)
 
 
+@app.route('/api/user/<user_id>/user_details', methods=['POST'])
+def set_user_details(user_id: str):
+    user = users.find_one({'_id': user_id})
+    if user is None:
+        return Response("{'err': 'User not found.'}", status=404, mimetype="application/json")
+    user_details = request.get_json()['user_details']
+    users.update_one({"_id": user_id}, {"details": user_details})
+
+
 @app.route('/api/courses/random/')
 def get_random_course():
     names_json = {}
@@ -88,7 +97,8 @@ def login():
             return jsonify(err="User exists"), 400
         name = id_info['name']
         email = id_info['email']
-        users.insert_one({"_id": user_id, "name": name, "email": email})
+        users.insert_one({"_id": user_id, "name": name,
+                         "email": email, "details": {}})
         return jsonify(jwt=signed_jwt)
     except ValueError:
         return Response("{'err': 'Invalid token.'}", status=400, mimetype="application/json")
