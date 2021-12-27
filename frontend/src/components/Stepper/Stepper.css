@@ -1,5 +1,5 @@
 .Stepper {
   width: 1rem;
-  height: auto;
+  height: fit-content;
   padding-right: 2.5rem;
 }
