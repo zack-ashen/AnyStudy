@@ -2,3 +2,4 @@ node_modules
 data/
 .env
 .pyc
+backend/__pycache__/app.cpython-310.pyc
