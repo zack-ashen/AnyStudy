@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import Select, {Theme, OptionTypeBase} from 'react-select'
+import { useHistory } from "react-router-dom";
 
 import { UserDetails, GradYear, Major, ShortCourse } from '../../types';
 import Stepper from '../Stepper/Stepper';
 import FormRadio from '../FormRadio/FormRadio';
 import { toast } from '../ToastNotification/ToastManager';
 import useCourseOptions from '../../hooks/useCourseOptions';
+import { useRequest } from '../../contexts/request';
+import AuthContext from '../../contexts/auth';
 
 import './UserForm.css';
 
@@ -22,7 +25,7 @@ const UserMajorFormPage = ({ next, formData }: FormPageProps) => {
   const [majorValue, setMajorValue] = useState<OptionTypeBase>({value: formData.major.major, label: formData.major.major});
   const [options, setOptions] = useState([{value: formData.major.major, label: formData.major.major}]);
   const [majors, setMajors] = useState<Major[]>();
-  const [selectThemeError, setSelectThemeError] = useState(false)
+  const [selectThemeError, setSelectThemeError] = useState(false);
 
   useEffect(() => {
     fetch('/api/majors')
@@ -77,7 +80,7 @@ const UserMajorFormPage = ({ next, formData }: FormPageProps) => {
   }
 
  return (
-    <form className="UserMajorFormPage" onSubmit={handleSubmit}>
+    <form className="UserMajorFormPage FormPage" onSubmit={handleSubmit}>
       <label className="userFormLabel">What's your major?</label>
       <Select 
         options={options} 
@@ -106,7 +109,7 @@ const UserYearFormPage = ({ prev, next, formData }: FormPageProps) => {
   }
 
   return (
-    <form className="UserYearFormPage" onSubmit={handleSubmit}>
+    <form className="UserYearFormPage FormPage" onSubmit={handleSubmit}>
       <label className="userFormLabel">What year are you?</label>
       <FormRadio options={years} selected={yearIndex === -1 ? 1 : yearIndex} setSelected={setYearIndex} />
       <div className="directionalButtons">
@@ -163,7 +166,7 @@ const PlannedCoursesFormPage = ({ prev, next, formData }: FormPageProps) => {
   }
 
   return (
-    <form className="PlannedClassesFormPage" onSubmit={handleSubmit}>
+    <form className="PlannedClassesFormPage FormPage" onSubmit={handleSubmit}>
       <label className="userFormLabel">What classes do you plan on taking that you are looking forward to?</label>
       <Select 
         options={options} 
@@ -229,7 +232,7 @@ const LikedCoursesFormPage = ({ prev, next, formData }: FormPageProps) => {
   }
 
   return (
-    <form className="LikedClassesFormPage" onSubmit={handleSubmit}>
+    <form className="LikedClassesFormPage FormPage" onSubmit={handleSubmit}>
       <label className="userFormLabel">What classes have you already taken that you enjoyed?</label>
       <Select 
         options={options} 
@@ -296,7 +299,7 @@ const DislikedCoursesFormPage = ({ prev, next, formData }: FormPageProps) => {
   }
 
   return (
-    <form className="LikedClassesFormPage" onSubmit={handleSubmit}>
+    <form className="LikedClassesFormPage FormPage" onSubmit={handleSubmit}>
       <label className="userFormLabel">What classes have you already taken that you did not enjoy?</label>
       <Select 
         options={options} 
@@ -326,12 +329,10 @@ const UserForm = () => {
     futureCourses: [],
     dislikedCourses: []
   })
+  const { withDefaults } = useRequest();
+  const { user, refreshUser } = useContext(AuthContext);
   const [step, setStep] = useState(1);
-
-  useEffect(() => {
-    console.log(formData)
-    
-  })
+  const history = useHistory();
 
   const prevStep = (updatedFormData: UserDetails) => {
     setFormData(updatedFormData);
@@ -344,10 +345,19 @@ const UserForm = () => {
   }
 
   const submit = (formData: UserDetails) => {
-   console.log(formData); 
+    console.log(formData); 
+    fetch(`/api/user/${user?.id}/user_details`, 
+      withDefaults({
+        method: 'POST',
+        body: JSON.stringify({
+          userDetails: formData
+        })
+      }))
+    refreshUser();
+    history.push('/course-selection')
   }
   
-  const renderFormStep = (step: Number) => {
+  const renderFormStep = (step: Number) => { 
     switch (step) {
       case 1:
         return <UserMajorFormPage next={nextStep} formData={formData}/>

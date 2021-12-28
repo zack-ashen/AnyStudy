@@ -44,8 +44,9 @@ def set_user_details(user_id: str):
     user = users.find_one({'_id': user_id})
     if user is None:
         return Response("{'err': 'User not found.'}", status=404, mimetype="application/json")
-    user_details = request.get_json()['user_details']
-    users.update_one({"_id": user_id}, {"details": user_details})
+    user_details = request.get_json()['userDetails']
+    users.update_one({"_id": user_id}, {"$set": {"details": user_details}})
+    return jsonify(users.find_one({'_id': user_id}))
 
 
 @app.route('/api/courses/random/')
